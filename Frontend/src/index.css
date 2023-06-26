@@ -1,0 +1,17 @@
+body {
+  /* font-family: "Alkatra", cursive; */
+  /* font-family: "Courgette", cursive;
+  font-family: "Dancing Script", cursive;
+  font-family: "Gentium Book Plus", serif;
+  font-family: "Kalam", cursive;
+  font-family: "Labrada", serif;
+  font-family: "Work Sans", sans-serif; */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  scroll-behavior: smooth;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
+    monospace;
+}
