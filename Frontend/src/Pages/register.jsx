@@ -1,9 +1,12 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import "../Styles/login.css";
 import registerImage from "../assets/images/register.png";
 
 import { Button, Col, Container, Form, FormGroup, Row } from "react-bootstrap";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+
+import { AuthContext } from "../Context/authContext";
+import { BASE_URL } from "../utils/config";
 
 export default function Register() {
   const [credentials, setCredentials] = useState({
@@ -12,6 +15,9 @@ export default function Register() {
     password: undefined,
   });
 
+  const { dispatch } = useContext(AuthContext);
+  const navigate = useNavigate();
+
   const handleChange = (e) => {
     setCredentials((previous) => ({
       ...previous,
@@ -19,8 +25,29 @@ export default function Register() {
     }));
   };
 
-  const handleClick = (e) => {
+  const handleClick = async (e) => {
     e.preventDefault();
+
+    try {
+      const res = await fetch(`${BASE_URL}/auth/register`, {
+        method: "post",
+        headers: {
+          "content-type": "application/json",
+        },
+        body: JSON.stringify(credentials),
+      });
+
+      const result = await res.json();
+
+      if (!res.ok) {
+        alert(result.message);
+      }
+
+      dispatch({ type: "REGISTER_SUCCESS" });
+      navigate("/login");
+    } catch (error) {
+      alert(error.message);
+    }
   };
   return (
     <>

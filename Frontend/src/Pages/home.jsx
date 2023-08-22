@@ -12,7 +12,16 @@ import Newsletter from "../Shared/newsletter";
 export default function Home() {
   return (
     <>
-      <section>
+      <section
+        style={{
+          backgroundImage:
+            'url("https://images.pexels.com/photos/459225/pexels-photo-459225.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2")',
+          backgroundRepeat: "no-repeat",
+          backgroundSize: "cover",
+          // backgroundPosition: "center",
+          height: "100% ",
+        }}
+      >
         <Container>
           <Row>
             <Col lg="6">
@@ -34,7 +43,7 @@ export default function Home() {
               </div>
             </Col>
 
-            <Col lg="2">
+            {/* <Col lg="2">
               <div className="hero__img-box">
                 <img src="./assets/images/picture5.jpg" alt="" />
               </div>
@@ -42,14 +51,14 @@ export default function Home() {
             <Col lg="2">
               <div className="hero__img-box mt-4">
                 <img src="./assets/images/picture10.jpg" alt="" />
-                {/* <video src="./assets/images/travel.mp4" alt="" controls /> */}
+                <video src="./assets/images/travel.mp4" alt="" controls />
               </div>
             </Col>
             <Col lg="2">
               <div className="hero__img-box">
                 <img src="./assets/images/picture6.jpg" alt="" />
               </div>
-            </Col>
+            </Col> */}
             <SearchBar></SearchBar>
           </Row>
         </Container>
