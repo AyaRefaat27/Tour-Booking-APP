@@ -1,33 +1,41 @@
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useRef, useContext } from "react";
 import { Button, Container, Row } from "react-bootstrap";
-import { Link, NavLink } from "react-router-dom";
+import { Link, NavLink, useNavigate } from "react-router-dom";
 import "./header.css";
+import { AuthContext } from "../../Context/authContext";
+
+const nav_link = [
+  {
+    path: "/home",
+    display: "Home",
+  },
+  {
+    path: "/about",
+    display: "About",
+  },
+  {
+    path: "/tours",
+    display: "Tours",
+  },
+  {
+    path: "/hotels",
+    display: "Hotels",
+  },
+  {
+    path: "/contact",
+    display: "Contact",
+  },
+];
 
 export default function Header() {
-  const nav_link = [
-    {
-      path: "/home",
-      display: "Home",
-    },
-    {
-      path: "/about",
-      display: "About",
-    },
-    {
-      path: "/tours",
-      display: "Tours",
-    },
-    {
-      path: "/hotels",
-      display: "Hotels",
-    },
-    {
-      path: "/contact",
-      display: "Contact",
-    },
-  ];
-
   const headerRef = useRef(null);
+  const navigate = useNavigate();
+  const { user, dispatch } = useContext(AuthContext);
+
+  const logout = () => {
+    dispatch({ type: "LOGOUT" });
+    navigate("/");
+  };
 
   const stickyHeader = () => {
     window.addEventListener("scroll", () => {
@@ -81,20 +89,35 @@ export default function Header() {
             {/* Start Right Menu */}
             <div className="nav_right d-flex align-items-center gap-4 mx-5 ">
               <div className="nav_btns d-flex align-items-center gap-4 mx-5">
-                <Button className=" btn secondary__btn" variant="outline-info">
-                  <Link to="/login"> Login</Link>
-                </Button>
+                {user ? (
+                  <>
+                    <h5 className="mb-0"> {user.username} </h5>
+                    <Button className="btn btn-dark" onClick={logout}>
+                      {" "}
+                      Logout{" "}
+                    </Button>
+                  </>
+                ) : (
+                  <>
+                    <Button
+                      className=" btn secondary__btn"
+                      variant="outline-info"
+                    >
+                      <Link to="/login"> Login</Link>
+                    </Button>
 
-                <Button className=" btn primary__btn" variant="danger">
-                  <Link to="/register"> Register</Link>
-                </Button>
+                    <Button className=" btn primary__btn" variant="danger">
+                      <Link to="/register"> Register</Link>
+                    </Button>
+                  </>
+                )}
               </div>
+
+              <span className="mobile_menu">
+                <i class="fa-solid fa-bars"></i>
+              </span>
             </div>
             {/* End Right Menu */}
-
-            <span className="mobile_menu">
-              <i class="fa-solid fa-bars"></i>
-            </span>
           </div>
         </Row>
       </Container>
