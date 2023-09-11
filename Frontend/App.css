@@ -1,0 +1,110 @@
+:root {
+  --primary-color: rgba(40, 110, 223, 0.788);
+  --secondary-color: rgba(40, 110, 223, 0.516);
+  --heading-color: #0b2727;
+  --text-color: #6e7074;
+  --font-name: "Alkatra", cursive;
+  --subtitle-font-name: "Kalam", cursive;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: var(--font-name);
+}
+
+section {
+  padding: 50px 0px;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  color: var(--heading-color);
+}
+
+a {
+  text-decoration: none;
+  color: unset;
+}
+ul {
+  list-style: none;
+}
+
+.primary__btn {
+  background: #fff !important;
+  border: none !important;
+  border-radius: 50px !important;
+  padding: 0.4rem 1.5rem !important;
+}
+
+.primary__btn a {
+  font-size: 1.1rem;
+  text-decoration: none;
+  color: rgba(6, 67, 165, 0.694);
+  font-weight: 600;
+}
+
+.primary__btn a:hover {
+  color: rgba(16, 96, 225, 0.333);
+}
+
+.secondary__btn {
+  background: transparent !important;
+  color: #0b2727 !important;
+  border: none !important;
+  font-weight: 500 !important;
+}
+
+.secondary__btn a {
+  text-decoration: none;
+  font-size: 1.1rem;
+  color: #fff;
+}
+
+/* .secondary__btn a:hover {
+  color: rgba(16, 96, 225, 0.333);
+} */
+
+.section__subtitle {
+  background: var(--secondary-color);
+  font-family: var(--subtitle-font-name);
+  width: max-content;
+  padding: 0px 0.5rem;
+  padding-right: 1rem;
+
+  border-radius: 50px;
+  font-weight: 500;
+  font-size: 1.7rem;
+  color: var(--heading-color);
+}
+
+@media only screen and (max-width: 992px) {
+  .primary__btn a,
+  .secondary__btn a {
+    font-size: 0.9rem;
+  }
+
+  .primary__btn,
+  .secondary__btn,
+  .btn-dark {
+    padding: 0.2rem 1.1rem !important;
+  }
+
+  section {
+    padding: 40px 0;
+  }
+}
+
+@media only screen and (max-width: 768px) {
+  .section__subtitle {
+    font-size: 1.3rem;
+  }
+}
