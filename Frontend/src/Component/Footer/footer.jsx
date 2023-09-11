@@ -50,7 +50,7 @@ export default function Footer() {
         <Row>
           <Col lg="3">
             <div className="logo">
-              <img src="../assets/images/logo3.jpg" alt="" />
+              <span>T R A V E L.</span>
               <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
             </div>
 
@@ -163,11 +163,15 @@ export default function Footer() {
           <Col lg="12" className="text-center pt-5">
             <p className="copyright">
               CopyRight{" "}
-              <span style={{ color: "#c50b0bcd", fontWeight: "500" }}>
+              <span
+                style={{ color: "var(--primary-color)", fontWeight: "500" }}
+              >
                 {year}
               </span>{" "}
               , Designed & Developed by{" "}
-              <span style={{ color: "#c50b0bcd", fontWeight: "500" }}>
+              <span
+                style={{ color: "var(--primary-color)", fontWeight: "500" }}
+              >
                 Aya Refaat
               </span>
               . All Rights Reserved.

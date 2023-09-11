@@ -10,25 +10,26 @@ const nav_link = [
     display: "Home",
   },
   {
-    path: "/about",
-    display: "About",
-  },
-  {
     path: "/tours",
     display: "Tours",
+  },
+  {
+    path: "/about",
+    display: "About",
   },
   {
     path: "/hotels",
     display: "Hotels",
   },
-  {
-    path: "/contact",
-    display: "Contact",
-  },
+  // {
+  //   path: "/contact",
+  //   display: "Contact",
+  // },
 ];
 
 export default function Header() {
   const headerRef = useRef(null);
+  const menuRef = useRef(null);
   const navigate = useNavigate();
   const { user, dispatch } = useContext(AuthContext);
 
@@ -54,6 +55,10 @@ export default function Header() {
     stickyHeader();
     return window.removeEventListener("scroll", stickyHeader);
   });
+
+  const toggleMenu = () => {
+    menuRef.current.classList.toggle("show__menu");
+  };
   return (
     <header className="header" ref={headerRef}>
       <Container>
@@ -61,12 +66,12 @@ export default function Header() {
           <div className="nav_wrapper d-flex align-items-center justify-content-between">
             {/* Start Logo */}
             <div className="logo">
-              <img src="../assets/images/logo3.jpg" alt="" />
+              <span>T R A V E L.</span>
             </div>
             {/* End Logo */}
 
             {/* Start Menu */}
-            <div className="navigation">
+            <div className="navigation" onClick={toggleMenu} ref={menuRef}>
               <ul className="menu d-flex align-items-center gap-5 me-5 ">
                 {nav_link.map((item, index) => {
                   return (
@@ -87,35 +92,36 @@ export default function Header() {
             {/* End Menu */}
 
             {/* Start Right Menu */}
-            <div className="nav_right d-flex align-items-center gap-4 mx-5 ">
-              <div className="nav_btns d-flex align-items-center gap-4 mx-5">
+            <div className="nav_right d-flex align-items-center gap-2 mx-2">
+              <div className="nav_btns d-flex align-items-center gap-2 mx-2">
                 {user ? (
                   <>
-                    <h5 className="mb-0"> {user.username} </h5>
-                    <Button className="btn btn-dark" onClick={logout}>
+                    <h5 className="mb-0" style={{ color: "#fff" }}>
+                      {" "}
+                      {user.username}{" "}
+                    </h5>
+                    <Button className="btn btn-primary" onClick={logout}>
                       {" "}
                       Logout{" "}
                     </Button>
                   </>
                 ) : (
                   <>
-                    <Button
-                      className=" btn secondary__btn"
-                      variant="outline-info"
-                    >
+                    <Button className="btn primary__btn" variant="outline-info">
                       <Link to="/login"> Login</Link>
                     </Button>
 
-                    <Button className=" btn primary__btn" variant="danger">
+                    <Button className="btn primary__btn" variant="danger">
                       <Link to="/register"> Register</Link>
                     </Button>
                   </>
                 )}
               </div>
-
-              <span className="mobile_menu">
-                <i class="fa-solid fa-bars"></i>
-              </span>
+              <div
+                className="menu-btn"
+                onClick={toggleMenu}
+                ref={menuRef}
+              ></div>
             </div>
             {/* End Right Menu */}
           </div>
