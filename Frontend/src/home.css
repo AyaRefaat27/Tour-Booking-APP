@@ -1,0 +1,274 @@
+/* .hero__section {
+  background-image: url("../assets/images/bg.jpg");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  background-attachment: fixed;
+  height: auto;
+}
+
+.hero__subtitle img {
+  width: 50px;
+  height: 50px;
+}
+
+.hero__content {
+  padding-top: 30px;
+  text-align: center;
+}
+
+.hero__content h1 {
+  font-size: 40px;
+  font-weight: 600;
+  margin-top: 10px;
+  margin-bottom: 20px;
+  color: var(--heading-color);
+}
+.hero__content h1 .highlight {
+  color: var(--secondary-color);
+}
+.hero__content p {
+  font-size: 20px;
+  font-weight: 400;
+  color: var(--heading-color);
+  line-height: 20px;
+}
+
+.hero__content .btn {
+  width: 200px;
+  font-weight: 700px;
+  margin-top: 1rem;
+}
+
+.hero__image {
+  width: 600px;
+  padding-top: 20px;
+  border-radius: 10px;
+  object-fit: cover;
+}
+
+.hero__img-box img:hover {
+  transform: scale(1.1);
+  transition: 0.3s;
+} */
+
+.home {
+  padding: 100px 200px;
+  position: relative;
+  width: 100%;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  background: rgba(40, 110, 223, 0.696);
+}
+
+.home::before {
+  z-index: 777;
+  content: "";
+  position: absolute;
+  background: rgba(3, 96, 251, 0.3);
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+}
+.home .content {
+  z-index: 888;
+  color: #fff;
+  margin-top: 50px;
+  width: 70%;
+}
+
+.home .content h1 {
+  font-size: 3rem;
+  color: #fff;
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: 5px;
+  line-height: 75px;
+  margin-bottom: 40px;
+}
+
+.home .content h1 span {
+  font-size: 1.5rem;
+  font-weight: 600;
+}
+
+.home .content p {
+  margin-bottom: 65px;
+  color: #fff;
+}
+
+.home .content a {
+  background: #fff;
+  width: 300px;
+  color: rgba(40, 110, 223, 0.696);
+  font-size: 1.1rem;
+  font-weight: 500;
+  text-decoration: none;
+  border-radius: 50px;
+  padding: 1rem 2rem;
+}
+
+.home .media_icons {
+  z-index: 888;
+  position: absolute;
+  right: 30px;
+  display: flex;
+  flex-direction: column;
+  transition: 0.5s ease;
+}
+
+.home .media_icons a {
+  color: #fff;
+  font-size: 1.8rem;
+  transition: 0.3s ease;
+}
+
+.home .media_icons span:not(:last-child) {
+  margin-bottom: 20px;
+}
+
+.home .media_icons span:hover {
+  transform: scale(1.3);
+  transition: 0.5s ease;
+}
+
+.home video {
+  z-index: 000;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+@media (max-width: 1040px) {
+  .home {
+    padding: 100px 20px;
+  }
+
+  .home .media_icons {
+    right: 15px;
+  }
+}
+
+.services__subtitle {
+  font-size: 20px;
+  font-weight: 500;
+  color: var(--primary-color);
+  font-family: "Kalam", cursive;
+}
+.services__title {
+  font-size: 30px;
+  font-weight: 600;
+}
+
+.featured__tour-title {
+  font-size: 2.3rem;
+  font-weight: 500;
+}
+
+.experience__content {
+  text-align: center;
+}
+
+.experience__content h2 {
+  font-size: 2.5rem;
+  margin-top: 1rem;
+  font-weight: 500;
+  color: #fff;
+}
+
+.experience__content p {
+  font-size: 1.2rem;
+  color: #fff;
+  margin-top: 1rem;
+  font-weight: 500;
+}
+
+.counter__wrapper {
+  margin-top: 2.5rem;
+  flex-wrap: wrap;
+}
+
+.counter__box span {
+  width: 70px;
+  height: 70px;
+  margin: auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--primary-color);
+  color: #fff;
+  font-size: 1.6rem;
+  font-weight: 600;
+  border-radius: 10px 5px 10px 5px;
+}
+
+.counter__box h6 {
+  font-size: 1.1rem;
+  margin-top: 0.7rem;
+  color: #fff;
+}
+
+.gallery__title {
+  font-size: 2.3rem;
+  margin-bottom: 2.5rem;
+  margin-top: 1rem;
+}
+
+.masonry__img {
+  transition: 0.3s;
+}
+
+.masonry__img:hover {
+  transform: translateY(-10px);
+}
+
+.testimonial__title {
+  font-size: 2.3rem;
+  margin-top: 1rem;
+}
+
+@media only screen and (width: 992px) {
+  .hero__image img {
+    width: 400px;
+  }
+
+  .hero__content h1 {
+    font-size: 2.5rem;
+  }
+
+  .hero__img-box {
+    display: none;
+  }
+
+  .services__title,
+  .featured__tour-title,
+  .gallery__title,
+  .testimonial__title,
+  .experience__content h2 {
+    font-size: 2rem;
+  }
+}
+
+@media only screen and (width: 576px) {
+  .hero__image img {
+    width: 200px;
+  }
+
+  .hero__content h1 {
+    font-size: 1.8rem;
+  }
+
+  .services__title,
+  .featured__tour-title,
+  .gallery__title,
+  .testimonial__title,
+  .experience__content h2 {
+    font-size: 1.5rem;
+  }
+}
