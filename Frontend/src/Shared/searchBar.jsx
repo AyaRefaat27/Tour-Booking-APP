@@ -29,7 +29,7 @@ export default function SearchBar() {
 
     const result = await res.json();
     navigate(
-      `/tours/search?city=${location}&distance=${distance}&maxGroupSize=${maxGroupSize}`,
+      `/tour/search?city=${location}&distance=${distance}&maxGroupSize=${maxGroupSize}`,
       { state: result.data }
     );
   };
@@ -81,7 +81,7 @@ export default function SearchBar() {
                 style={{
                   fontSize: "20px",
                   padding: "6px",
-                  background: "#c50b0bcd",
+                  background: "rgba(40, 110, 223, 0.788)",
                   color: "#fff",
                   borderRadius: "50px",
                   cursor: "pointer",

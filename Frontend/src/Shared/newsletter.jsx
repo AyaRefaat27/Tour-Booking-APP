@@ -1,6 +1,6 @@
 import React from "react";
 import "./newsletter.css";
-import Tourist from "../assets/images/tourist_prev_ui.png";
+import Tourist from "../assets/images/picture4.png";
 import { Col, Container, Row } from "react-bootstrap";
 
 export default function Newsletter() {
