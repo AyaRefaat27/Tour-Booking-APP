@@ -1,5 +1,9 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import { useNavigate } from "react-router-dom";
+import { AuthContext } from "../../Context/authContext";
+import { BASE_URL } from "../../utils/config";
+import FetchData from "../../Hooks/fetchData";
+
 import "./booking.css";
 import {
   Button,
@@ -10,13 +14,14 @@ import {
 } from "react-bootstrap";
 
 export default function Booking({ tour, avgRating }) {
-  const { price, reviews } = tour;
-
+  const { price, reviews, title } = tour;
   const navigate = useNavigate();
+  const { user } = useContext(AuthContext);
 
-  const [credentials, setCredentials] = useState({
-    userId: "01",
-    userEmail: "aya@gmail.com",
+  const [booking, setBooking] = useState({
+    userId: user && user._id,
+    userEmail: user && user.email,
+    tourName: title,
     fullName: "",
     phone: "",
     guestSize: 1,
@@ -24,7 +29,7 @@ export default function Booking({ tour, avgRating }) {
   });
 
   const handleChange = (e) => {
-    setCredentials((previous) => ({
+    setBooking((previous) => ({
       ...previous,
       [e.target.id]: e.target.value,
     }));
@@ -32,13 +37,36 @@ export default function Booking({ tour, avgRating }) {
 
   const serviceFee = 10;
   const totalAmount =
-    Number(price) * Number(credentials.guestSize) + Number(serviceFee);
+    Number(price) * Number(booking.guestSize) + Number(serviceFee);
 
   // send data to the server
 
-  const handleClick = (e) => {
+  const handleClick = async (e) => {
     e.preventDefault();
-    navigate("/thank-you");
+
+    try {
+      if (!user || user === undefined || user === null) {
+        alert("Please Sign In!");
+      }
+
+      const res = await fetch(`${BASE_URL}/booking`, {
+        method: "post",
+        headers: {
+          "content-type": "application/json",
+        },
+        credentials: "include",
+        body: JSON.stringify(booking),
+      });
+
+      const result = await res.json();
+
+      if (!res.ok) {
+        return alert(result.message);
+      }
+      navigate("/thank-you");
+    } catch (error) {
+      alert(error.message);
+    }
   };
 
   return (
@@ -125,7 +153,14 @@ export default function Booking({ tour, avgRating }) {
           </ListGroupItem>
         </ListGroup>
 
-        <Button className="btn primary__btn w-100 mt-4" onClick={handleClick}>
+        <Button
+          className="btn text-light w-100 mt-4 fw-bold"
+          style={{
+            backgroundColor: "rgba(40, 110, 223, 0.788)",
+            borderRadius: "50px",
+          }}
+          onClick={handleClick}
+        >
           Book Now
         </Button>
       </div>
