@@ -9,61 +9,75 @@ import ToursList from "../Component/FeaturesTours/toursList";
 import ImagesGallery from "../Component/ImageGallery/imagesGallery";
 import Testimonials from "../Component/Testimonial/testimonials";
 import Newsletter from "../Shared/newsletter";
+import { Link } from "react-router-dom";
+
+import VideoOne from "../assets/images/video1.mp4";
 export default function Home() {
   return (
     <>
-      <section
-        style={{
-          backgroundImage:
-            'url("https://images.pexels.com/photos/459225/pexels-photo-459225.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2")',
-          backgroundRepeat: "no-repeat",
-          backgroundSize: "cover",
-          // backgroundPosition: "center",
-          height: "100% ",
-        }}
-      >
+      <section className="home">
+        <video
+          className="video_slide"
+          src={VideoOne}
+          autoPlay
+          muted
+          loop
+        ></video>
+        <div className="content">
+          <h1>
+            Wonderful. <br></br>
+            <span>Island</span>
+          </h1>
+          <p>
+            Lorem ipsum dolor sit, amet consectetur adipisicing elit. Repellat
+            fuga nostrum debitis asperiores commodi itaque .
+          </p>
+          <Link to="/tours"> Explore</Link>
+          <SearchBar />
+        </div>
+
+        <div className="media_icons">
+          <span>
+            <Link to="#">
+              <i className="fa-brands fa-facebook"></i>
+            </Link>
+          </span>
+          <span>
+            <Link to="#">
+              <i className="fa-brands fa-instagram"></i>
+            </Link>
+          </span>
+          <span>
+            <Link to="#">
+              <i className="fa-brands fa-twitter"></i>
+            </Link>
+          </span>
+        </div>
+      </section>
+
+      {/* <section className="hero__section">
         <Container>
           <Row>
-            <Col lg="6">
+            <Col lg="12">
               <div className="hero__content">
                 <div className="hero__subtitle d-flex align-items-center">
                   <SubTitle subtitle={"Know Before You Go"} />
-                  {/* <img src="./assets/images/world.jpg" alt="" /> */}
                 </div>
                 <h1>
                   Travelling opens the door to creating
                   <span className="highlight"> Memories</span>
                 </h1>
-                <p>
-                  Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                  Similique ad voluptate optio ipsa tenetur pariatur! Ipsa
-                  libero nemo aut molestiae minima iusto nisi accusantium fugiat
-                  unde, id, quas officia eveniet.
-                </p>
+                <Button className=" btn primary__btn" variant="danger">
+                  <Link to="/tours"> Explore</Link>
+                </Button>
               </div>
             </Col>
 
-            {/* <Col lg="2">
-              <div className="hero__img-box">
-                <img src="./assets/images/picture5.jpg" alt="" />
-              </div>
-            </Col>
-            <Col lg="2">
-              <div className="hero__img-box mt-4">
-                <img src="./assets/images/picture10.jpg" alt="" />
-                <video src="./assets/images/travel.mp4" alt="" controls />
-              </div>
-            </Col>
-            <Col lg="2">
-              <div className="hero__img-box">
-                <img src="./assets/images/picture6.jpg" alt="" />
-              </div>
-            </Col> */}
+            
             <SearchBar></SearchBar>
           </Row>
         </Container>
-      </section>
-
+      </section> */}
       <section>
         <Container>
           <Row>
@@ -90,7 +104,7 @@ export default function Home() {
 
       <section
         style={{
-          backgroundImage: 'url("./assets/images/picture1.jpg")',
+          backgroundImage: 'url("./assets/images/picture9.jpg")',
           backgroundAttachment: "fixed",
           backgroundSize: "cover",
           backgroundRepeat: "no-repeat",
@@ -98,7 +112,7 @@ export default function Home() {
       >
         <Container>
           <Row>
-            <Col lg="6">
+            <Col lg="12">
               <div className="experience__content">
                 <SubTitle subtitle={"Experience"}> </SubTitle>
                 <h2>
@@ -111,8 +125,11 @@ export default function Home() {
                 </p>
               </div>
             </Col>
-            <Col lg="6">
-              <div className="counter__wrapper d-flex align-items-center gap-5 mt-5">
+          </Row>
+
+          <Row>
+            <Col lg="12">
+              <div className="counter__wrapper d-flex align-items-center gap-2 mt-5 justify-content-center">
                 <div className="counter__box">
                   <span>12k+</span>
                   <h6>Successful Trip</h6>

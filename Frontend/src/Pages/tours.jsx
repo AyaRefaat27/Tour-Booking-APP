@@ -1,14 +1,16 @@
 import React, { useEffect, useState } from "react";
 import "../Styles/tour.css";
+import "../Styles/home.css";
 import { Col, Container, Row } from "react-bootstrap";
 
-import CommonSection from "../Shared/commonSection";
 import SearchBar from "../Shared/searchBar";
 import TourCard from "../Shared/tourCard";
 import Newsletter from "../Shared/newsletter";
 
 import { BASE_URL } from "../utils/config.js";
 import FetchData from "../Hooks/fetchData.js";
+import VideoOne from "../assets/images/video1.mp4";
+import { Link } from "react-router-dom";
 
 export default function Tours() {
   const [pageCount, setPageCount] = useState(0);
@@ -30,16 +32,49 @@ export default function Tours() {
   }, [page, tourCount, tours]);
   return (
     <>
-      <CommonSection title={"All Tours"} />
+      <section className="home">
+        <video
+          className="video_slide"
+          src={VideoOne}
+          autoPlay
+          muted
+          loop
+        ></video>
+        <div className="content">
+          <h1>All Tours</h1>
+
+          <SearchBar />
+        </div>
+
+        <div className="media_icons">
+          <span>
+            <Link to="#">
+              <i className="fa-brands fa-facebook"></i>
+            </Link>
+          </span>
+          <span>
+            <Link to="#">
+              <i className="fa-brands fa-instagram"></i>
+            </Link>
+          </span>
+          <span>
+            <Link to="#">
+              <i className="fa-brands fa-twitter"></i>
+            </Link>
+          </span>
+        </div>
+      </section>
+
+      {/* <CommonSection title={"All Tours"} />
       <section>
         <Container>
           <Row>
             <SearchBar />
           </Row>
         </Container>
-      </section>
+      </section> */}
 
-      <section className="pt-0">
+      <section className="pt-5 mt-5">
         <Container>
           {loading && <h4 className="text-center pt-5">Loading....</h4>}
           {error && <h4 className="text-center pt-5">{error}</h4>}
@@ -47,7 +82,7 @@ export default function Tours() {
             <Row>
               {tours?.map((tour) => {
                 return (
-                  <Col lg="3" className="mb-4" key={tour._id}>
+                  <Col lg="3" md="6" sm="6" className="mb-4" key={tour._id}>
                     <TourCard tour={tour} />
                   </Col>
                 );

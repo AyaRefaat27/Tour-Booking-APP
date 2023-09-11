@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useRef, useState, useContext } from "react";
 import "../Styles/tour-details.css";
 import { useParams } from "react-router-dom";
 import { Col, Container, Row, Form, ListGroup } from "react-bootstrap";
@@ -8,16 +8,16 @@ import Booking from "../Component/Booking/booking";
 
 import { BASE_URL } from "../utils/config.js";
 import FetchData from "../Hooks/fetchData.js";
+import { AuthContext } from "../Context/authContext";
+import CommonSection from "../Shared/commonSection";
 
 export default function TourDetails() {
   const { id } = useParams();
-
   const reviewReference = useRef("");
-
   const [tourRating, setTourRating] = useState(null);
+  const { user } = useContext(AuthContext);
 
   // Fetch data
-
   const { data: tour, loading, error } = FetchData(`${BASE_URL}/tours/${id}`);
 
   // Destructure Properties from tour object
@@ -40,13 +40,40 @@ export default function TourDetails() {
 
   // Submit Request to the Server
 
-  const submitHandler = (e) => {
+  const submitHandler = async (e) => {
     e.preventDefault();
 
     const reviewText = reviewReference.current.value;
 
-    // alert(`${reviewText} , ${tourRating}`);
-    // api call later
+    try {
+      if (!user || user === undefined || user === null) {
+        alert("Please Sign In!");
+      }
+
+      const reviewObject = {
+        username: user?.username,
+        reviewText,
+        rating: tourRating,
+      };
+
+      const res = await fetch(`${BASE_URL}/reviews/${id}`, {
+        method: "post",
+        headers: {
+          "content-type": "application/json",
+        },
+        credentials: "include",
+        body: JSON.stringify(reviewObject),
+      });
+
+      const result = await res.json();
+      if (!res.ok) {
+        return alert(result.message);
+      }
+
+      alert(result.message);
+    } catch (error) {
+      alert(error.message);
+    }
   };
 
   useEffect(() => {
@@ -54,6 +81,7 @@ export default function TourDetails() {
   }, [tour]);
   return (
     <>
+      <CommonSection title={" Tour Details"} />
       <section>
         <Container>
           {loading && <h4 className="text-center pt-5">Loading....</h4>}
@@ -61,7 +89,7 @@ export default function TourDetails() {
           {!loading && !error && (
             <Row>
               <Col lg="8">
-                <div className="tour__content">
+                <div className="tour__content mt-5">
                   <div>
                     <img src={photo} alt="" />
                   </div>
@@ -167,7 +195,11 @@ export default function TourDetails() {
                           required
                         />
                         <button
-                          className="btn primary__btn text-white"
+                          className="btn text-light"
+                          style={{
+                            backgroundColor: "rgba(40, 110, 223, 0.788)",
+                            borderRadius: "50px",
+                          }}
                           type="submit"
                         >
                           Submit
@@ -184,16 +216,15 @@ export default function TourDetails() {
                             <div className="w-100">
                               <div className="d-flex align-items-center justify-content-between">
                                 <div>
-                                  <h5> Aya </h5>
+                                  <h5> {review.username} </h5>
                                   <p>
-                                    {new Date("06-15-2023").toLocaleDateString(
-                                      "en-US",
-                                      options
-                                    )}
+                                    {new Date(
+                                      review.createdAt
+                                    ).toLocaleDateString("en-US", options)}
                                   </p>
                                 </div>
                                 <span className="d-flex align-items-center">
-                                  5{" "}
+                                  {review.rating}
                                   <i
                                     className="fa-solid fa-star"
                                     style={{
@@ -204,7 +235,7 @@ export default function TourDetails() {
                                 </span>
                               </div>
 
-                              <h6>Amazing Tour</h6>
+                              <h6>{review.reviewText}</h6>
                             </div>
                           </div>
                         );

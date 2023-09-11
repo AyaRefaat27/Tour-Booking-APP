@@ -1,13 +1,13 @@
 import React, { useContext, useState } from "react";
 import "../Styles/login.css";
 import loginImage from "../assets/images/Login.png";
+import CommonSection from "../Shared/commonSection";
 
 import { Button, Col, Container, Form, FormGroup, Row } from "react-bootstrap";
 import { Link, useNavigate } from "react-router-dom";
 
 import { AuthContext } from "../Context/authContext";
 import { BASE_URL } from "../utils/config";
-
 export default function Login() {
   const [credentials, setCredentials] = useState({
     email: undefined,
@@ -52,6 +52,7 @@ export default function Login() {
 
   return (
     <>
+      <CommonSection title={"Login"} />
       <section>
         <Container>
           <Row>

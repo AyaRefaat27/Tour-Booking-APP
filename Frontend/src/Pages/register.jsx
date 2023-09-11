@@ -7,6 +7,7 @@ import { Link, useNavigate } from "react-router-dom";
 
 import { AuthContext } from "../Context/authContext";
 import { BASE_URL } from "../utils/config";
+import CommonSection from "../Shared/commonSection";
 
 export default function Register() {
   const [credentials, setCredentials] = useState({
@@ -51,6 +52,8 @@ export default function Register() {
   };
   return (
     <>
+      <CommonSection title={"Register"} />
+
       <section>
         <Container>
           <Row>
